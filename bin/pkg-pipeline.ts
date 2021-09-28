@@ -12,7 +12,8 @@ class PipelineStack extends Stack {
     super(scope, id);
     new PkgPipeline(this, "PkgPipeline", {
       name: id,
-      repoDescription: "Node.js Package Pipeline Repository",
+      repoDescription:
+        "Publish Node.js Modules to AWS CodeArtifact using AWS CodePipeline",
       codeArtifactNamespace: "@my-namespace",
       codeArtifactRepo: "my-repo",
       codeArtifactDomain: "my-domain",

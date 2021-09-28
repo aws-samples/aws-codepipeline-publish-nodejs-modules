@@ -1,5 +1,5 @@
 {
-  "name": "@my-namespace/aws-codepipeline-publish-nodejs-modules",
+  "name": "@my-namespace/nodejs-pkg-pipeline",
   "version": "1.0.0",
   "license": "MIT-0",
   "files": [
