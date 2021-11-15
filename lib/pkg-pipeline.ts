@@ -1,6 +1,6 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: MIT-0
-import { Arn, CfnOutput, Stack } from "aws-cdk-lib";
+import { Arn, CfnOutput, RemovalPolicy, Stack } from "aws-cdk-lib";
 import { Construct } from "constructs";
 import { Repository } from "aws-cdk-lib/lib/aws-codecommit";
 import { Artifact, Pipeline } from "aws-cdk-lib/lib/aws-codepipeline";
@@ -21,6 +21,7 @@ import { NodejsFunction } from "aws-cdk-lib/lib/aws-lambda-nodejs";
 import { LambdaFunction } from "aws-cdk-lib/lib/aws-events-targets";
 import { resolve } from "path";
 import { existsSync } from "fs";
+import { Bucket, BucketEncryption } from "aws-cdk-lib/lib/aws-s3";
 
 interface PkgPipelineProps {
   /**
@@ -195,20 +196,32 @@ export class PkgPipeline extends Construct {
         REGION: Stack.of(this).region,
       },
       entry,
-      initialPolicy: [
-        new PolicyStatement({
-          actions: ["codecommit:GetCommit"],
-          resources: [repository.repositoryArn],
-        }),
-      ],
-      logRetention: 1,
     });
+    commitFilterFn.addToRolePolicy(
+      new PolicyStatement({
+        actions: ["codecommit:GetCommit"],
+        resources: [repository.repositoryArn],
+      })
+    );
     repository.onCommit("CommitToMain", {
       branches: ["main"],
       target: new LambdaFunction(commitFilterFn),
     });
+    const accessLogsBucket = new Bucket(this, "AccessLogs", {
+      autoDeleteObjects: true, // for demo purposes
+      removalPolicy: RemovalPolicy.DESTROY, // for demo purposes
+      encryption: BucketEncryption.S3_MANAGED,
+    });
+    const artifactBucket = new Bucket(this, "Artifacts", {
+      autoDeleteObjects: true, // for demo purposes
+      encryption: BucketEncryption.S3_MANAGED,
+      removalPolicy: RemovalPolicy.DESTROY, // for demo purposes
+      serverAccessLogsBucket: accessLogsBucket,
+      serverAccessLogsPrefix: "pipeline-artifacts",
+    });
     const pipeline = new Pipeline(this, "Pipeline", {
       pipelineName: name,
+      artifactBucket,
     });
     commitFilterFn.addEnvironment("PIPELINE_NAME", pipeline.pipelineName);
     commitFilterFn.addToRolePolicy(
