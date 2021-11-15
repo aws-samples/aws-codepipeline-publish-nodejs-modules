@@ -21,32 +21,32 @@
     "update": "npx npm-check-updates --target minor -u"
   },
   "devDependencies": {
-    "@types/aws-lambda": "^8.10.83",
+    "@types/aws-lambda": "^8.10.85",
     "@types/jest": "^26.0.24",
-    "@types/node": "^14.17.14",
-    "@typescript-eslint/eslint-plugin": "^4.30.0",
-    "@typescript-eslint/parser": "^4.30.0",
+    "@types/node": "^14.17.33",
+    "@typescript-eslint/eslint-plugin": "^4.33.0",
+    "@typescript-eslint/parser": "^4.33.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-jest": "^24.4.0",
+    "eslint-plugin-jest": "^24.7.0",
     "eslint-plugin-prettier": "^3.4.1",
     "jest": "^26.6.3",
-    "prettier": "^2.3.2",
+    "prettier": "^2.4.1",
     "ts-jest": "^26.5.6",
     "ts-node": "^9.1.1",
     "typescript": "~3.9.10"
   },
   "peerDependencies": {
-    "aws-cdk": "^2.0.0-rc.23",
-    "aws-cdk-lib": "^2.0.0-rc.23",
-    "constructs": "^10.0.5"
+    "aws-cdk": "^2.0.0-rc.29",
+    "aws-cdk-lib": "^2.0.0-rc.29",
+    "constructs": "^10.0.9"
   },
   "dependencies": {
-    "@aws-sdk/client-codecommit": "^3.29.0",
-    "@aws-sdk/client-codepipeline": "^3.29.0",
+    "@aws-sdk/client-codecommit": "^3.41.0",
+    "@aws-sdk/client-codepipeline": "^3.41.0",
     "@semantic-release/changelog": "^5.0.1",
-    "@semantic-release/git": "^9.0.0",
-    "esbuild": "^0.12.25",
+    "@semantic-release/git": "^9.0.1",
+    "esbuild": "^0.13.13",
     "semantic-release": "^17.4.7"
   }
 }
