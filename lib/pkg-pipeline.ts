@@ -219,6 +219,8 @@ export class PkgPipeline extends Construct {
       serverAccessLogsBucket: accessLogsBucket,
       serverAccessLogsPrefix: "pipeline-artifacts",
     });
+    // Build artifacts, such as a cache, logs, exported raw test report data files, and build results, are encrypted by default using AWS managed keys
+    // https://docs.aws.amazon.com/codebuild/latest/userguide/security-encryption.html
     const pipeline = new Pipeline(this, "Pipeline", {
       pipelineName: name,
       artifactBucket,
