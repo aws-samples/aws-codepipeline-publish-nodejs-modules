@@ -251,6 +251,11 @@ Package Workflow: Produce to Consume
 1. AWS CodePipeline begins the "Publish" stage which runs the command npx semantic-release within AWS CodeBuild. This kicks off a package release workflow that determines the next version number, generates release notes, and publishes the package to AWS CodeArtifact. See semantic-release for more information.
 1. Package consumer installs the updated package version into their Node.js project with npm install @my-namespace/my-package.
 
+Additional Security Considerations:
+- Use AWS CodeCommit with interface VPC endpoints for network level access control. More information [here](https://docs.aws.amazon.com/codecommit/latest/userguide/codecommit-and-interface-VPC.html).
+- Use AWS CodeArtifact with interface VPC endpoints for network level access control. More information [here](https://docs.aws.amazon.com/codeartifact/latest/ug/vpc-endpoints.html).
+- Connect to CodeCommit using [git-remote-codecommit](https://docs.aws.amazon.com/codecommit/latest/userguide/setting-up-git-remote-codecommit.html)
+
 ## Security
 
 See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more information.
