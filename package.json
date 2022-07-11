@@ -39,9 +39,9 @@
     "typescript": "~3.9.10"
   },
   "peerDependencies": {
-    "aws-cdk": "^2.0.0-rc.29",
-    "aws-cdk-lib": "^2.0.0-rc.29",
-    "constructs": "^10.0.9"
+    "aws-cdk": "^2.31.0",
+    "aws-cdk-lib": "^2.31.0",
+    "constructs": "^10.1.43"
   },
   "dependencies": {
     "@aws-sdk/client-codecommit": "^3.121.0",
