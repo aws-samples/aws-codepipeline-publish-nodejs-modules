@@ -44,8 +44,8 @@
     "constructs": "^10.1.43"
   },
   "dependencies": {
-    "@aws-sdk/client-codecommit": "^3.121.0",
-    "@aws-sdk/client-codepipeline": "^3.121.0",
+    "@aws-sdk/client-codecommit": "^3.350.0",
+    "@aws-sdk/client-codepipeline": "^3.350.0",
     "esbuild": "^0.14.49",
     "semantic-release": "^19.0.3"
   }
